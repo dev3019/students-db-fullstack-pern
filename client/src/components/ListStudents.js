@@ -1,5 +1,6 @@
 import React, {Fragment, useEffect, useState } from 'react'
 import EditStudent from './EditStudent'
+
 const ListStudents = ()=>{
   
   const [students, setStudents] = useState([])
@@ -40,7 +41,7 @@ const ListStudents = ()=>{
   const getStudents = async() => {
     try {
       let studentDB 
-      const studentDBFetch = await fetch("http://localhost:5020/api/v1/students/getList")
+      const studentDBFetch = await fetch(`http://localhost:5020/api/v1/students/getList`)
         .then((response) => response.json())
         .then(async(responseJSON) => {
           studentDB = responseJSON.sort()

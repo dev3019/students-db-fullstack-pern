@@ -11,7 +11,7 @@ const AddStudent = ()=>{
         e.preventDefault()
         try {
             const body = {name,email,age,dob}
-            const response = await fetch("http://localhost:5020/api/v1/students/add",{
+            const response = await fetch(`http://localhost:5020/api/v1/students/add`,{
                 method: "POST",
                 body: JSON.stringify(body),
                 headers: {"Content-Type": "application/json"}
