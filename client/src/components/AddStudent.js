@@ -16,6 +16,10 @@ const AddStudent = ()=>{
                 body: JSON.stringify(body),
                 headers: {"Content-Type": "application/json"}
             })
+            setName(name)
+            setEmail(email)
+            setAge(age)
+            setDOB(dob)
             window.location = "/"
         } catch (error) {
             console.log(error)

@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState } from 'react'
-
+import EditStudent from './EditStudent'
 const ListStudents = ()=>{
   
   const [students, setStudents] = useState([])
@@ -17,7 +17,7 @@ const ListStudents = ()=>{
         headers: {"Content-Type": "application/json"}
       }).then((response)=>response.json()).then(async(responseJSON)=>{
         // console.log(responseJSON)
-        setStudents(students.filter(student => student.id!== id))
+        setStudents(students.filter(student => student.id!== id).sort())
       })
     } catch (error) {
       console.log(error.message)
@@ -43,7 +43,7 @@ const ListStudents = ()=>{
       const studentDBFetch = await fetch("http://localhost:5020/api/v1/students/getList")
         .then((response) => response.json())
         .then(async(responseJSON) => {
-          studentDB = responseJSON
+          studentDB = responseJSON.sort()
         })
       setStudents(studentDB)
       console.log(studentDB)
@@ -57,14 +57,12 @@ const ListStudents = ()=>{
     getStudents()
   },[])
 
-  // console.log(students)
-
   return(
     <Fragment>
       <table className="table table-dark table-striped mt-5">
         <thead>
           <tr>
-            <th>Student</th>
+            <th colSpan={2}>Student</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -72,9 +70,14 @@ const ListStudents = ()=>{
         <tbody>
           {students.map(student => (
             <tr key={student.id}>
-              <td>{student.name}</td>
-              <td>Edit</td>
-              <td><button className='btn btn-danger' onClick={() => deleteStudent(student.id)}>Delete</button></td>
+                <td>{student.name}</td>
+                <td>{student.email}</td>
+              <td>
+                <EditStudent student={student}/>
+              </td>
+              <td>
+                <button className='btn btn-danger' onClick={() => deleteStudent(student.id)}>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>
