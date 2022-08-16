@@ -4,8 +4,8 @@ const AddStudent = ()=>{
     
     const [name, setName] = useState("Name")
     const [email, setEmail] = useState("Email")
-    const [age, setAge] = useState("Age")
-    const [dob, setDOB] = useState("DOB")
+    const [age, setAge] = useState("24")
+    const [dob, setDOB] = useState("24 Jan,1996")
     
     const onSubmitForm = async(e)=>{
         e.preventDefault()
